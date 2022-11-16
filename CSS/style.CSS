@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #C30707;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+.logo {
+    margin: 5rem;
+}
+
+.search-zone {
+    display: flex;
+}
+
+.search-icon{
+    width: 55px;
+}
+
+.search-type {
+    margin: 0 1.2rem;
+}
+
+input {
+    padding: 1rem;
+    border-radius: 30px;
+    border-color: #000000;
+}
+
+#namePokemon {
+    align-self: flex-start;
+}
+
+#btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

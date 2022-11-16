@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,25 @@
 
     <link rel="stylesheet" href="./CSS/style.CSS">
 </head>
+
 <body>
-    
-    
+
+    <main class="container">
+        <img class="logo" src="./Images/pokemon-logo-8 1.png" alt="Logo Pokemon">
+        <form method="POST" action="">
+            <div class="search-zone">
+                <input type="text"  id="namePokemon" placeholder="Nome do Pokémon">
+                <div class="search-type">
+                    <input type="text" id="typeOne" placeholder="Tipo 1">
+                    <input type="text" id="typeTwo" placeholder="Tipo 2">
+                </div>
+                <button id="btn"><img class="search-icon" src="./Images/search-icon.png" alt="serch-icon"></button>
+            </div>
+        </form>
+        <ul data-js="pokedex" class="pokedex"></ul>
+    </main>
 
     <script src="./JS/app.js"></script>
 </body>
+
 </html>
