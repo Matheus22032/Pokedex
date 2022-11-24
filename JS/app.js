@@ -1,29 +1,31 @@
 const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}`;
+const pokemonTemplate = document.querySelector('[data-pokemon-template]');
+const ul = document.querySelector('[data-js="pokedex"]');
+
+let pokemonsCards = [];
 
 generatePokemonPromise = () => Array(898).fill().map((_, index) =>
     fetch(getPokemonUrl(index + 1)).then(response => response.json()));
 
-const generateHTML = pokemons => pokemons.reduce((accumulator, { name, id, types, sprites }) => {
-    const elemenTypes = types.map(typeInfo => typeInfo.type.name);
+const generateCard = pokemonsPromiseArray => {
+   pokemonsCards = pokemonsPromiseArray.map(({ name, id, types, sprites }) => {
+        const elemenTypes = types.map(typeInfo => typeInfo.type.name);
 
-    accumulator += `
-            <li class="card ${elemenTypes[0]}">
-                <img class="pokemon-sprite" alt="${name}" src="${sprites.front_default}"/>
-                <h2 class="pokemon-name">${id}. ${name}</h2>
-                <p class="pokemon-type">${elemenTypes.join(" | ")}</p>
-            </li>
-            `;
-    return accumulator;
-}, '');
+        const card = pokemonTemplate.content.cloneNode(true).children[0];
+        const pokemonSprite = card.querySelector("#spritePokemon");
+        const pokemonName = card.querySelector('[data-name-pokemon]');
+        const pokemonType = card.querySelector('[data-type-pokemon]');
 
+        pokemonSprite.src = sprites.front_default;
+        pokemonName.textContent = `${id}. ${name}`;
+        pokemonType.textContent = `${elemenTypes.join(" | ")}`;
+        card.classList.add(elemenTypes[0]);
 
-const insertHTML = listPokemons => {
-    const ul = document.querySelector('[data-js="pokedex"]');
-    ul.innerHTML = listPokemons;
-}
+        ul.append(card);
+        return {name, id, elemenTypes, sprites, card};
+    });
+};
 
 const pokemonPromise = generatePokemonPromise();
 Promise.all(pokemonPromise)
-    .then(generateHTML)
-    .then(insertHTML)
-
+    .then(generateCard);
