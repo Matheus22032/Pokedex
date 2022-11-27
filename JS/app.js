@@ -3,6 +3,7 @@ const pokemonTemplate = document.querySelector('[data-pokemon-template]');
 const ul = document.querySelector('[data-js="pokedex"]');
 
 let pokemonsCards = [];
+let elemenTypes2;
 
 generatePokemonPromise = () => Array(898).fill().map((_, index) =>
     fetch(getPokemonUrl(index + 1)).then(response => response.json()));
