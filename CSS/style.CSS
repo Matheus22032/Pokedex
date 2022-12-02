@@ -117,6 +117,13 @@ select:focus {
     flex-direction: column;
 }
 
+.pokemon-id {
+    align-self: flex-end;
+    background-color:rgba(255, 255, 255, .25) ;
+    border-radius: 30px;
+    padding: .5rem 1rem;
+    font-weight: 600;
+}
 
 .pokemon-sprite {
     background-color: rgba(255, 255, 255, .25);

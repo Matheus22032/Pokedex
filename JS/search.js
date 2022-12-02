@@ -4,7 +4,7 @@ searchInputName.addEventListener("input", e => {
     const namePokemon = e.target.value.toLowerCase();
     pokemonsCards.forEach(pokemonCard => {
         const isVisible = pokemonCard.name.includes(namePokemon);
-        pokemonCard.card.classList.toggle("hide", !isVisible);
+        pokemonCard.cardTemplate.classList.toggle("hide", !isVisible);
     });
 });
 
@@ -16,7 +16,7 @@ const errorSearch = document.querySelector('#errorSearch');
 const searchTypesInCard = type => {
     pokemonsCards.forEach(pokemonCard => {
         const isVisible = pokemonCard.elemenTypes.includes(type);
-        pokemonCard.card.classList.toggle("hide", !isVisible);
+        pokemonCard.cardTemplate.classList.toggle("hide", !isVisible);
     });
 }
 
@@ -27,13 +27,13 @@ form.addEventListener('submit', e => {
     const searchTypesInCard = type => {
         pokemonsCards.forEach(pokemonCard => {
             const isVisible = pokemonCard.elemenTypes.includes(type);
-            pokemonCard.card.classList.toggle("hide", !isVisible);
+            pokemonCard.cardTemplate.classList.toggle("hide", !isVisible);
         });
     }
 
     errorSearch.textContent = "";
     pokemonsCards.forEach(pokemonCard => {
-        pokemonCard.card.classList.remove("hide");
+        pokemonCard.cardTemplate.classList.remove("hide");
     });
 
     if (typeTwo == "" & typeOne == "" || typeOne == typeTwo) {
@@ -48,7 +48,7 @@ form.addEventListener('submit', e => {
                         return typeInfo == typeOne || typeInfo == typeTwo
                     })
                         & pokemonCard.elemenTypes.length > 1;
-                    pokemonCard.card.classList.toggle("hide", !isVisible);
+                    pokemonCard.cardTemplate.classList.toggle("hide", !isVisible);
                 });
             } else {
                 searchTypesInCard(typeOne);

@@ -12,18 +12,23 @@ const generateCard = pokemonsPromiseArray => {
    pokemonsCards = pokemonsPromiseArray.map(({ name, id, types, sprites }) => {
         const elemenTypes = types.map(typeInfo => typeInfo.type.name);
 
-        const card = pokemonTemplate.content.cloneNode(true).children[0];
-        const pokemonSprite = card.querySelector("#spritePokemon");
-        const pokemonName = card.querySelector('[data-name-pokemon]');
-        const pokemonType = card.querySelector('[data-type-pokemon]');
+        const namePokemon = name[0].toUpperCase() + name.slice(1);
+        const idPokemon = id.toString().padStart(3,'0');
 
-        pokemonSprite.src = sprites.front_default;
-        pokemonName.textContent = `${id}. ${name}`;
-        pokemonType.textContent = `${elemenTypes.join(" | ")}`;
-        card.classList.add(elemenTypes[0]);
+        const cardTemplate = pokemonTemplate.content.cloneNode(true).children[0];
+        const pokemonSpriteTemplate = cardTemplate.querySelector("#spritePokemon");
+        const pokemonNameTemplate = cardTemplate.querySelector('[data-name-pokemon]');
+        const pokemonTypeTemplate = cardTemplate.querySelector('[data-type-pokemon]');
+        const pokemonIdTemplate = cardTemplate.querySelector('[data-id-pokemon]');
 
-        ul.append(card);
-        return {name, id, elemenTypes, sprites, card};
+        pokemonSpriteTemplate.src = sprites.front_default;
+        pokemonNameTemplate.textContent = `${namePokemon}`;
+        pokemonTypeTemplate.textContent = `${elemenTypes.join(" | ")}`;
+        cardTemplate.classList.add(elemenTypes[0]);
+        pokemonIdTemplate.textContent = `#${idPokemon}`;
+
+        ul.append(cardTemplate);
+        return {name, id, elemenTypes, sprites, cardTemplate};
     });
 };
 
